@@ -9,5 +9,5 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface LancamentoRemote extends Serializable {
-    
+
 }

@@ -1,25 +1,31 @@
 package br.com.lab.treinamento;
 
+import br.com.lab.treinamento.local.LancamentoLocal;
+import javax.ejb.EJB;
+import javax.ejb.Singleton;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
-import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.POST;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author furlan
  */
+@Singleton
 @Path("Lancamento")
-@RequestScoped
 public class LancamentoWebService {
 
     @Context
     private UriInfo context;
+    @EJB
+    private LancamentoLocal lancamentoService;
 
     public LancamentoWebService() {
     }
@@ -27,12 +33,24 @@ public class LancamentoWebService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("buscar")
-    public String getBuscar() {
-        return "vai Curinthia";
+    public Response getBuscar() throws Exception {
+        try {
+            return Response.ok(lancamentoService.teste()).build();
+        } catch (Exception ex) {
+            throw new Exception("asdasdasdasdas ERRO", ex);
+        }
     }
 
-    @PUT
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
+    @Path("register/{nome}")
+    public Response putJson(@PathParam(value = "nome") String nome) throws Exception {
+        try {
+            lancamentoService.register(nome);
+            
+            return Response.ok().build();
+        } catch (Exception ex) {
+            throw new Exception("asdasdasdasdas ERRO", ex);
+        }
     }
 }

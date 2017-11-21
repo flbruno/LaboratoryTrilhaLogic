@@ -1,1 +1,6 @@
-/home/bruno/Work/LaboratoryLogic/laboratoryTrilha/lancamento-ejb/src/main/java/br/com/lab/treinamento/NewSessionBean.java
+/home/bruno/work/LaboratoryTrilhaLogic/laboratoryTrilha/lancamento-ejb/src/main/java/br/com/lab/treinamento/NewSessionBean.java
+/home/bruno/work/LaboratoryTrilhaLogic/laboratoryTrilha/lancamento-ejb/src/main/java/br/com/treinamento/ejb/LancamentoBean.java
+/home/bruno/work/LaboratoryTrilhaLogic/laboratoryTrilha/lancamento-ejb/src/main/java/br/com/lab/treinamento/local/LancamentoLocal.java
+/home/bruno/work/LaboratoryTrilhaLogic/laboratoryTrilha/lancamento-ejb/src/main/java/br/com/lab/treinamento/remote/LancamentoRemote.java
+/home/bruno/work/LaboratoryTrilhaLogic/laboratoryTrilha/lancamento-ejb/src/main/java/br/com/lab/treinamento/dao/managerConnection.java
+/home/bruno/work/LaboratoryTrilhaLogic/laboratoryTrilha/lancamento-ejb/src/main/java/br/com/treinamento/repository/LancamentoRepository.java

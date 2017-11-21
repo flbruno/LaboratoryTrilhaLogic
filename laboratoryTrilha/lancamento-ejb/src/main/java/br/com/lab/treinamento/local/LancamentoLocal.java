@@ -9,5 +9,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface LancamentoLocal extends LancamentoRemote {
-    
+
+    String teste() throws Exception;
+
+    void register(String nome) throws Exception;
 }
