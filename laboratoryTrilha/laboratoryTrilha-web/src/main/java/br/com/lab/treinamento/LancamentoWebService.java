@@ -47,8 +47,19 @@ public class LancamentoWebService {
     public Response putJson(@PathParam(value = "nome") String nome) throws Exception {
         try {
             lancamentoService.register(nome);
-            
+
             return Response.ok().build();
+        } catch (Exception ex) {
+            throw new Exception("asdasdasdasdas ERRO", ex);
+        }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("doGet")
+    public Response doGet() throws Exception {
+        try {
+            return Response.ok(lancamentoService.doGet()).build();
         } catch (Exception ex) {
             throw new Exception("asdasdasdasdas ERRO", ex);
         }

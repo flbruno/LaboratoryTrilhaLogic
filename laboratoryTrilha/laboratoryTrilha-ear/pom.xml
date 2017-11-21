@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>laboratoryTrilha</artifactId>
-    <groupId>br.com.lab.treinamento</groupId>
-    <version>1.0</version>
-  </parent>
+        <artifactId>laboratoryTrilha</artifactId>
+        <groupId>br.com.lab.treinamento</groupId>
+        <version>1.0</version>
+    </parent>
 
     <groupId>br.com.lab.treinamento</groupId>
     <artifactId>laboratoryTrilha-ear</artifactId>
@@ -36,9 +36,23 @@
                 <configuration>
                     <version>6</version>
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                        <webModule>
+                            <groupId>br.com.lab.treinamento</groupId>
+                            <artifactId>laboratoryTrilha-web</artifactId>
+                            <contextRoot>/labTrilha</contextRoot>
+                            <bundleFileName>laboratoryTrilha-web.war</bundleFileName>
+                        </webModule>
+                        <ejbModule>
+                            <groupId>br.com.lab.treinamento</groupId>
+                            <artifactId>lancamento-ejb</artifactId>
+                            <bundleFileName>lancamento-ejb.jar</bundleFileName>
+                        </ejbModule>
+                    </modules>
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>lab-trilha</finalName>
     </build>
     <dependencies>
         <dependency>

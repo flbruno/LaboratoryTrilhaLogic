@@ -72,4 +72,8 @@ public class LancamentoRepository extends managerConnection {
             removeConnection(conn, ps, rs);
         }
     }
+    
+    public String doGets() throws Exception {
+        return "Passei Aqui....";
+    }
 }

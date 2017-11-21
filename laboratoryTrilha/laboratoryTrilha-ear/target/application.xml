@@ -2,13 +2,13 @@
 <application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
   <display-name>laboratoryTrilha-ear</display-name>
   <module>
-    <ejb>lancamento-ejb-1.0.jar</ejb>
+    <web>
+      <web-uri>laboratoryTrilha-web.war</web-uri>
+      <context-root>/labTrilha</context-root>
+    </web>
   </module>
   <module>
-    <web>
-      <web-uri>laboratoryTrilha-web-1.0.war</web-uri>
-      <context-root>/laboratoryTrilha-web</context-root>
-    </web>
+    <ejb>lancamento-ejb.jar</ejb>
   </module>
   <library-directory>lib</library-directory>
 </application>

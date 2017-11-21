@@ -11,24 +11,35 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class LancamentoBean extends LancamentoRepository implements LancamentoRemote, LancamentoLocal {
-    
+
     @Override
     public String teste() throws Exception {
-         try {
-              return getObjecst();
-        }catch (Exception ex) {
+        try {
+            return getObjecst();
+        } catch (Exception ex) {
             throw ex;
         }
     }
-    
+
     @Override
     public void register(String nome) throws Exception {
         try {
-            if(!nome.isEmpty()) {
+            if (!nome.isEmpty()) {
                 registerObject(nome);
             }
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             throw ex;
         }
     }
+
+    @Override
+    public String doGet() throws Exception {
+        try {
+
+            return doGets();
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
 }
