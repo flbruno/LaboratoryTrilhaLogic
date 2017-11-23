@@ -1,18 +1,26 @@
 package br.com.treinamento.repository;
 
-import br.com.lab.treinamento.dao.managerConnection;
+import br.com.lab.treinamento.dao.ManagerConnection;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
  * @author furlan
  */
-public class LancamentoRepository extends managerConnection {
+@Stateless
+public class LancamentoRepository implements Serializable {
+
+    @Inject
+    private ManagerConnection connection;
 
     /**
      * Metodo salva os dados de lancamento
+     *
      * @param nome
      * @throws Exception
      */
@@ -23,7 +31,7 @@ public class LancamentoRepository extends managerConnection {
         StringBuilder sqlQuery;
 
         try {
-            conn = getConnection();
+            conn = connection.getConnection();
 
             sqlQuery = new StringBuilder("INSERT INTO teste(nome) VALUES (?)");
             ps = conn.prepareStatement(sqlQuery.toString());
@@ -35,12 +43,13 @@ public class LancamentoRepository extends managerConnection {
             throw e;
 
         } finally {
-            removeConnection(conn, ps, null);
+            connection.removeConnection(conn, ps, null);
         }
     }
-    
+
     /**
      * Metodo para obeter os valores do lancamento
+     *
      * @return Object
      * @throws Exception
      */
@@ -53,26 +62,26 @@ public class LancamentoRepository extends managerConnection {
         String nome = "";
 
         try {
-            conn = getConnection();
+            conn = connection.getConnection();
 
-            sqlQuery = new StringBuilder("SELECT nome FROM teste"); 
+            sqlQuery = new StringBuilder("SELECT nome FROM teste");
             ps = conn.prepareStatement(sqlQuery.toString());
             rs = ps.executeQuery();
 
             if (rs.next()) {
-               nome = rs.getString(nome);
+                nome = rs.getString(nome);
             }
-            
+
             return nome;
 
         } catch (Exception e) {
             throw e;
 
         } finally {
-            removeConnection(conn, ps, rs);
+            connection.removeConnection(conn, ps, rs);
         }
     }
-    
+
     public String doGets() throws Exception {
         return "Passei Aqui....";
     }

@@ -4,18 +4,22 @@ import br.com.lab.treinamento.local.LancamentoLocal;
 import br.com.lab.treinamento.remote.LancamentoRemote;
 import br.com.treinamento.repository.LancamentoRepository;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
  * @author furlan
  */
 @Stateless
-public class LancamentoBean extends LancamentoRepository implements LancamentoRemote, LancamentoLocal {
+public class LancamentoBean implements LancamentoRemote, LancamentoLocal {
+
+    @Inject
+    private LancamentoRepository lancamentoDao;
 
     @Override
     public String teste() throws Exception {
         try {
-            return getObjecst();
+            return lancamentoDao.getObjecst();
         } catch (Exception ex) {
             throw ex;
         }
@@ -25,7 +29,7 @@ public class LancamentoBean extends LancamentoRepository implements LancamentoRe
     public void register(String nome) throws Exception {
         try {
             if (!nome.isEmpty()) {
-                registerObject(nome);
+                lancamentoDao.registerObject(nome);
             }
         } catch (Exception ex) {
             throw ex;
@@ -36,7 +40,7 @@ public class LancamentoBean extends LancamentoRepository implements LancamentoRe
     public String doGet() throws Exception {
         try {
 
-            return doGets();
+            return lancamentoDao.doGets();
         } catch (Exception ex) {
             throw ex;
         }
