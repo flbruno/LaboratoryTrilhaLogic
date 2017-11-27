@@ -1,6 +1,7 @@
 package br.com.lab.treinamento;
 
 import br.com.lab.treinamento.local.LancamentoLocal;
+import br.com.lab.treinamento.model.Lancamento;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ws.rs.core.Context;
@@ -30,27 +31,32 @@ public class LancamentoWebService {
     public LancamentoWebService() {
     }
 
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("buscar")
-    public Response getBuscar() throws Exception {
+    @Path("obterDados")
+    public Response getLoadData() throws Exception {
         try {
-            return Response.ok(lancamentoService.teste()).build();
+            return Response.ok(lancamentoService.load()).build();
         } catch (Exception ex) {
-            throw new Exception("asdasdasdasdas ERRO", ex);
+            throw new Exception("ERRO", ex);
         }
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("register/{nome}")
-    public Response putJson(@PathParam(value = "nome") String nome) throws Exception {
+    @Path("register")
+    public Response registerData(Lancamento lancamento) throws Exception {
         try {
-            lancamentoService.register(nome);
-
-            return Response.ok().build();
+           lancamentoService.register(lancamento);
+           
+           return Response.ok("SUcesso").build();
         } catch (Exception ex) {
-            throw new Exception("asdasdasdasdas ERRO", ex);
+            throw new Exception("ERRO", ex);
         }
     }
 
@@ -61,7 +67,7 @@ public class LancamentoWebService {
         try {
             return Response.ok(lancamentoService.doGet()).build();
         } catch (Exception ex) {
-            throw new Exception("asdasdasdasdas ERRO", ex);
+            throw new Exception("ERRO", ex);
         }
     }
 }

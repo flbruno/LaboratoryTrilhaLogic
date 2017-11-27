@@ -1,6 +1,7 @@
 package br.com.treinamento.ejb;
 
 import br.com.lab.treinamento.local.LancamentoLocal;
+import br.com.lab.treinamento.model.Lancamento;
 import br.com.lab.treinamento.remote.LancamentoRemote;
 import br.com.treinamento.repository.LancamentoRepository;
 import javax.ejb.Stateless;
@@ -17,19 +18,19 @@ public class LancamentoBean implements LancamentoRemote, LancamentoLocal {
     private LancamentoRepository lancamentoDao;
 
     @Override
-    public String teste() throws Exception {
+    public Lancamento load() throws Exception {
         try {
-            return lancamentoDao.getObjecst();
+            return lancamentoDao.getLoadData();
         } catch (Exception ex) {
             throw ex;
         }
     }
 
     @Override
-    public void register(String nome) throws Exception {
+    public void register(Lancamento lancamento) throws Exception {
         try {
-            if (!nome.isEmpty()) {
-                lancamentoDao.registerObject(nome);
+            if (lancamento != null) {
+                lancamentoDao.registerObject(lancamento);
             }
         } catch (Exception ex) {
             throw ex;

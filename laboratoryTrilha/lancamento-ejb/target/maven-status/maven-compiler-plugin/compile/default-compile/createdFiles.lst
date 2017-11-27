@@ -2,5 +2,6 @@ br/com/lab/treinamento/dao/ManagerConnection.class
 br/com/treinamento/ejb/LancamentoBean.class
 br/com/lab/treinamento/remote/LancamentoRemote.class
 br/com/lab/treinamento/local/LancamentoLocal.class
+br/com/lab/treinamento/model/Lancamento.class
 br/com/lab/treinamento/NewSessionBean.class
 br/com/treinamento/repository/LancamentoRepository.class

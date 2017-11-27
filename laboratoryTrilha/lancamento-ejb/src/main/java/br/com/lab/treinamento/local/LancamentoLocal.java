@@ -1,5 +1,6 @@
 package br.com.lab.treinamento.local;
 
+import br.com.lab.treinamento.model.Lancamento;
 import br.com.lab.treinamento.remote.LancamentoRemote;
 import javax.ejb.Local;
 
@@ -10,9 +11,9 @@ import javax.ejb.Local;
 @Local
 public interface LancamentoLocal extends LancamentoRemote {
 
-    String teste() throws Exception;
+    Lancamento load() throws Exception;
 
-    void register(String nome) throws Exception;
+    void register(Lancamento lancamento) throws Exception;
 
     String doGet() throws Exception ;
 }

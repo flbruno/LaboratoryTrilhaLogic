@@ -1,6 +1,7 @@
 package br.com.treinamento.repository;
 
 import br.com.lab.treinamento.dao.ManagerConnection;
+import br.com.lab.treinamento.model.Lancamento;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,10 +22,10 @@ public class LancamentoRepository implements Serializable {
     /**
      * Metodo salva os dados de lancamento
      *
-     * @param nome
+     * @param lancamento
      * @throws Exception
      */
-    public void registerObject(String nome) throws Exception {
+    public void registerObject(Lancamento lancamento) throws Exception {
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -33,10 +34,14 @@ public class LancamentoRepository implements Serializable {
         try {
             conn = connection.getConnection();
 
-            sqlQuery = new StringBuilder("INSERT INTO teste(nome) VALUES (?)");
+            sqlQuery = new StringBuilder("INSERT INTO lancamento(nome, datalancamento, valor, tipolancamento)").
+                    append(" VALUES (?,?,?,?)");
             ps = conn.prepareStatement(sqlQuery.toString());
 
-            ps.setString(1, nome);
+            ps.setString(1, lancamento.getNome());
+            ps.setString(2, lancamento.getData());
+            ps.setDouble(3, lancamento.getValor());
+            ps.setInt(4, lancamento.getTipoLancamento());
             ps.executeQuery();
 
         } catch (Exception e) {
@@ -53,29 +58,33 @@ public class LancamentoRepository implements Serializable {
      * @return Object
      * @throws Exception
      */
-    public String getObjecst() throws Exception {
+    public Lancamento getLoadData() throws Exception {
 
         Connection conn = null;
         PreparedStatement ps = null;
         StringBuilder sqlQuery;
         ResultSet rs = null;
-        String nome = "";
+        Lancamento lancamento = null;
 
         try {
             conn = connection.getConnection();
 
-            sqlQuery = new StringBuilder("SELECT nome FROM teste");
+            sqlQuery = new StringBuilder("SELECT * FROM lancamento");
             ps = conn.prepareStatement(sqlQuery.toString());
             rs = ps.executeQuery();
 
-            if (rs.next()) {
-                nome = rs.getString(nome);
+            while (rs.next()) {
+                lancamento = new Lancamento();
+                lancamento.setNome(rs.getString("nome"));
+                lancamento.setData(rs.getString("datalancamento"));
+                lancamento.setValor(rs.getDouble("valor"));
+                lancamento.setTipoLancamento(rs.getInt("tipolancamento"));
             }
 
-            return nome;
+            return lancamento;
 
-        } catch (Exception e) {
-            throw e;
+        } catch (Exception ex) {
+            throw ex;
 
         } finally {
             connection.removeConnection(conn, ps, rs);

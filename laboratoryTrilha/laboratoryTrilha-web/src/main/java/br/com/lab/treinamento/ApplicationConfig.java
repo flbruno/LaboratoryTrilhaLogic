@@ -18,7 +18,6 @@ public class ApplicationConfig extends Application {
     }
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(br.com.lab.treinamento.GenericResource.class);
         resources.add(br.com.lab.treinamento.LancamentoWebService.class);
     }
 }
